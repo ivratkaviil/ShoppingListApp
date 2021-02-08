@@ -3,15 +3,13 @@ package com.example.shoppinglistapp.model;
 public class Items {
     private String id;
     private String text;
-    private Boolean checkbox;
 
     public Items() {
     }
 
-    public Items(String id, String text, Boolean checkbox) {
+    public Items(String id, String text) {
         this.id = id;
         this.text = text;
-        this.checkbox = checkbox;
     }
 
     public String getId() {
@@ -30,11 +28,4 @@ public class Items {
         this.text = text;
     }
 
-    public Boolean getCheckbox() {
-        return checkbox;
-    }
-
-    public void setCheckbox(Boolean checkbox) {
-        this.checkbox = checkbox;
-    }
 }
