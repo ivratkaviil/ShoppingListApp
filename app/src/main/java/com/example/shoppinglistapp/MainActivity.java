@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //Button Click
-
         btnAdd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -113,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addDataToFirebase(String text){
-        // Write a message to the database
 
         String id = myRef.push().getKey();
         Items items = new Items(id,text);
@@ -129,12 +126,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void readData(){
 
-        // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 list.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Items value = snapshot.getValue(Items.class);
@@ -148,8 +143,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
+            public void onCancelled(@NonNull DatabaseError error) {
                 Log.w("TAG", "Failed to read value.", error.toException());
             }
         });
@@ -203,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         EditText edEntry = dialog.findViewById(R.id.ed_entry);
         edEntry.setText(items.getText());
         Button btnAdd = dialog.findViewById(R.id.btn_add);
-        btnAdd.setText("Update");
+        btnAdd.setText(R.string.update);
 
         btnAdd.setOnClickListener(new View.OnClickListener(){
             @Override

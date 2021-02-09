@@ -17,6 +17,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Objects;
+
 import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
@@ -76,21 +78,19 @@ public class MainActivityTest {
 
     @Test
 
-    public void testRecyclerClick()
+    public void testClick()
     {
         Espresso.onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
     }
 
     @Test
 
-    public void testRecyclerCount()
+    public void testCount()
     {
         RecyclerView recyclerView = mainActivityActivityTestRule.getActivity().findViewById(R.id.recycler_view);
-        int itemcount = recyclerView.getAdapter().getItemCount();
+        int itemcount = Objects.requireNonNull(recyclerView.getAdapter()).getItemCount();
         Espresso.onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.scrollToPosition(itemcount-1));
     }
-
-
 
     @After
     public void tearDown() throws Exception {
